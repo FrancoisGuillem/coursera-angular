@@ -1,1 +1,3 @@
-angular.module("data", []);
+(function() {
+  angular.module("data", []);
+})();
