@@ -1,0 +1,6 @@
+<h2>items for category '{{$ctrl.items.category.name}}'</h2>
+<ul>
+  <li ng-repeat="item in $ctrl.items.menu_items">
+    {{item.short_name}} - {{item.name}} - {{item.description}}
+  </li>
+</ul>
