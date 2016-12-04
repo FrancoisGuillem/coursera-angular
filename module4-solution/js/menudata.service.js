@@ -10,7 +10,7 @@ function MenuDataService($http) {
   };
 
   service.getItemsForCategory = function(categoryShortName) {
-    console.log("get items");
+    console.log("get items for category " + categoryShortName);
     return $http.get(
       "https://davids-restaurant.herokuapp.com/menu_items.json",
       {params: {category: categoryShortName}}

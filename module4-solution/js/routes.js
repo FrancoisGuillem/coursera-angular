@@ -13,7 +13,6 @@ function configRoutes($stateProvider, $urlRouterProvider) {
   $stateProvider.state("categories", {
     url: "/categories",
     controller: ["categories", function(categories) {
-      console.log(categories)
       this.categories = categories.data;
     }],
     controllerAs: "ctrl",
@@ -21,6 +20,21 @@ function configRoutes($stateProvider, $urlRouterProvider) {
     resolve: {
       categories: ['MenuDataService', function (MenuDataService) {
         return MenuDataService.getAllCategories();
+      }]
+    }
+  });
+
+  $stateProvider.state("items", {
+    url: "/items/{category}",
+    controller: ["items", function(items) {
+      console.log(items);
+      this.items = items.data;
+    }],
+    controllerAs: "ctrl",
+    template: '<item-list items="ctrl.items"></item-list>',
+    resolve: {
+      items: ['MenuDataService', "$stateParams", function (MenuDataService, $stateParams) {
+        return MenuDataService.getItemsForCategory($stateParams.category);
       }]
     }
   });
