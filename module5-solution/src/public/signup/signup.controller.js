@@ -18,10 +18,12 @@
       // Retrieve favorite item
       MenuService.getItem(ctrl.user.favoriteItem).then(
         function(response) {
+          // Item is valid and we saved the profile
           ctrl.invalidItem = false;
           ctrl.saved = UserInfoService.saveInfo(ctrl.user);
         },
         function(error) {
+          // Item does not exist
           ctrl.invalidItem = true;
           ctrl.saved = false;
         }
