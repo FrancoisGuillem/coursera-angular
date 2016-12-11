@@ -1,3 +1,113 @@
+<style media="screen">
+  .ng-touched.ng-valid {
+    background-color: #cfc;
+    border: solid 2px green;
+  }
+
+  .ng-touched.ng-invalid {
+    background-color: #fcc;
+    border: solid 2px red;
+  }
+
+  .error {
+    padding: 7px 15px 0 7px;
+    color:#f55;
+  }
+</style>
 <div class="container">
   <h2>Sign Up</h2>
+  <form class="form-horizontal" name="signup" novalidate>
+      <div class="form-group">
+        <label for="first-name" class="col-sm-3 control-label">First Name:</label>
+        <div class="col-sm-6">
+        <input type="text"
+               id="first-name"
+               name="firstName"
+               value=""
+               placeholder="First Name"
+               class="form-control"
+               ng-model="ctrl.user.firstName"
+               required>
+        </div>
+        <div class="col-sm-3 error" ng-if="(signup.firstName.$touched || signup.$submitted) && signup.firstName.$error.required">
+          Field required !
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="last-name" class="col-sm-3 control-label">Last Name:</label>
+        <div class="col-sm-6">
+        <input type="text"
+               id="last-name"
+               name="last-name"
+               value=""
+               placeholder = "Last Name"
+               class="form-control"
+               ng-model="ctrl.user.lastName"
+               required>
+        </div>
+        <div class="col-sm-3 error" ng-if="(signup.lastName.$touched || signup.$submitted) && signup.firstName.$error.required">
+          Field required !
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email" class="col-sm-3 control-label">Email:</label>
+        <div class="col-sm-6">
+        <input type="email"
+               id="email"
+               name="email"
+               value=""
+               placeholder="name@domain.com"
+               class="form-control"
+               ng-model="ctrl.user.email"
+               required>
+        </div>
+        <div class="col-sm-3 error" ng-if="(signup.email.$touched || signup.$submitted) && signup.email.$invalid">
+          Must be a valid email adress
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone" class="col-sm-3 control-label">Phone number:</label>
+        <div class="col-sm-6">
+        <input type="tel"
+               id="phone"
+               name="phone"
+               value=""
+               placeholder="###-###-####"
+               class="form-control"
+               ng-model="ctrl.user.phone"
+               required
+               pattern="(\d{3})-(\d{3})-(\d{4})">
+        </div>
+        <div class="col-sm-3 error" ng-if="(signup.phone.$touched || signup.$submitted) && signup.phone.$invalid">
+          Phone must be in the format ###-###-####
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="favorite-item" class="col-sm-3 control-label">Favorite dish:</label>
+        <div class="col-sm-6">
+        <input type="text"
+               id="favorite-item"
+               name="favoriteItem"
+               value=""
+               placeholder="Short name of your favorite dish"
+               class="form-control"
+               ng-model="ctrl.user.favoriteItem">
+        </div>
+        <div class="col-sm-3 error" ng-if="(signup.favoriteItem.$touched || signup.$submitted)">
+          <span ng-if="signup.favoriteItem.$error.required">Field required !</span>
+          <span ng-if="ctrl.invalidItem">Warning: No such menu number exists</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-6 col-sm-offset-3">
+          <button type="submit" class="btn" style="background-color:#f6b319"
+                   ng-click="ctrl.saveUserInfo()" ng-disabled="signup.$invalid">
+            Save my information
+          </button>
+        </div>
+      </div>
+      <div class="">
+        Your information has been saved!
+      </div>
+  </form>
 </div>
